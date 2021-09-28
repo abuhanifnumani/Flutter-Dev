@@ -8,8 +8,23 @@ class listview extends StatefulWidget {
 }
 
 class _listviewState extends State<listview> {
-  var namelist = ["Kahir", "Shahan", "Nourin", "Tasrin"];
+  var namelist = [
+    " Ahmed All Kahir",
+    " Abu Hanif Numani",
+    " Abu Shahan Shah",
+    " Abu Shahan Shah ",
+    " Abu Shahan Shah ",
+    " Israt Tarin Nourin",
+    " Israt Tarin Nourin",
+    " Israt Tarin Nourin",
+    "Israt Tarin Tasrin"
+  ];
   var numlist = [
+    "010712030863",
+    "010712030863",
+    "010712030863",
+    "010712030863",
+    "010712030863",
     "010712030863",
     "010712030863",
     "010712030863",
@@ -19,55 +34,116 @@ class _listviewState extends State<listview> {
     "Kahir123@gmail.com",
     "Kahir123@gmail.com",
     "Kahir123@gmail.com",
+    "Kahir123@gmail.com",
+    "Kahir123@gmail.com",
+    "Kahir123@gmail.com",
+    "Kahir123@gmail.com",
+    "Kahir123@gmail.com",
     "Kahir123@gmail.com"
   ];
+
   @override
   Widget build(BuildContext context) {
+    print(namelist.length);
+    var wsize = MediaQuery.of(context).size.width;
     return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title:
+              const Text("Contact List", style: TextStyle(color: Colors.white)),
+          //centerTitle: true,
+          backgroundColor: Colors.blue,
+          leading: Container(
+            //padding: EdgeInsets.all(1),
+            margin: EdgeInsetsDirectional.all(5),
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(color: Colors.white),
+                shape: BoxShape.circle,
+                //borderRadius: BorderRadius.circular(50),
+                image: const DecorationImage(
+                  image: AssetImage("img/tShirt.jpg"),
+                  fit: BoxFit.fill,
+                )),
+          ),
+          actions: [Icon(Icons.more_vert)],
+          bottom: PreferredSize(
+              child: Container(
+                color: Colors.cyanAccent,
+                height: 4.0,
+              ),
+              preferredSize: Size.fromHeight(4.0)),
+        ),
         body: ListView.builder(
             itemCount: namelist.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                height: 300,
-                color: Colors.amber,
-                margin: EdgeInsets.all(50),
                 //child: Text(index.toString()),
                 //child: Center( child: Text(namelist[index])),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
+                child: Card(
+                  child: ListTile(
+                    leading: Container(
+                      //padding: EdgeInsets.all(10),
+                      //margin: EdgeInsetsDirectional.all(1),
+                      width: wsize / 6,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue),
+                          shape: BoxShape.circle,
+                          image: const DecorationImage(
+                            image: AssetImage("img/tShirt.jpg"),
+                            fit: BoxFit.fill,
+                          )),
+                    ),
+                    title: Column(
                       children: [
-                        Icon(
-                          Icons.person,
-                          size: 50,
-                          color: Colors.white,
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.person,
+                              size: 25,
+                              color: Colors.blue,
+                            ),
+                            Text(
+                              namelist[index],
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ],
                         ),
-                        Text(namelist[index]),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.call,
+                              size: 25,
+                              color: Colors.blue,
+                            ),
+                            Text(numlist[index],
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20))
+                          ],
+                        ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.call,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                        Text(numlist[index])
-                      ],
-                    ),
-                    Row(
+                    subtitle: Row(
                       children: [
                         Icon(
                           Icons.email,
-                          size: 20,
-                          color: Colors.white,
+                          size: 25,
+                          color: Colors.blue,
                         ),
-                        Text(elist[index]),
+                        Text(elist[index],
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 17)),
                       ],
                     ),
-                  ],
+                    trailing: Icon(
+                      Icons.more_vert,
+                      size: 25,
+                      color: Colors.blue,
+                    ),
+                  ),
                 ),
               );
             }));
